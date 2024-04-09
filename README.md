@@ -1,4 +1,4 @@
-﻿# Excel Search and Replace Web Application
+# Excel Search and Replace Web Application
 
 This project is a Flask-based web application that allows users to search for and replace text within Excel (.xlsx) files. It utilizes a simple web interface for inputting search queries and replacement text, displaying the files containing the search query, and allowing text replacements directly through the browser.
 
@@ -44,9 +44,12 @@ Before you begin, ensure you have Python installed on your system. This applicat
 * [Flask](http://flask.pocoo.org/) - The web framework used.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - A Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.
 
+if errors with python 3.10, do: pip install --upgrade Flask Werkzeug
+
+
 ## Authors
 
-* **Victor Collado** - *Initial work* - [colladovictor](https://github.com/colladovictor)
+* **Your Name** - *Initial work* - [YourUsername](https://github.com/YourUsername)
 
 ## License
 
