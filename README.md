@@ -8,7 +8,7 @@ These instructions will guide you through setting up and running the application
 
 ### Prerequisites
 
-Before you begin, ensure you have Python installed on your system. This application was developed with Python 3.8, but it should be compatible with any Python 3.x version. You will also need pip for installing Python packages.
+Before you begin, ensure you have Python installed on your system. This application was developed with Python 3.10, but it should be compatible with any Python 3.x version. You will also need pip for installing Python packages.
 
 ### Installation
 
@@ -45,6 +45,28 @@ Before you begin, ensure you have Python installed on your system. This applicat
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - A Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.
 
 if errors with python 3.10, do: pip install --upgrade Flask Werkzeug
+
+## How to generate your own .exe of the app, with the following steps as tested with python 3.10:
+  ```
+  pip install pyinstaller
+
+  ```
+
+
+  ```
+pyinstaller --onefile --add-data "app/templates;app/templates" --add-data "app/static;app/static" run.py
+  ```
+
+# pre-package .exe file to start the app without the need to have python within your computer:
+
+can be found here:
+
+  ```
+  excel-search-replace\dist\run.exe
+  ```
+
+Note: if you choose also just do the above and generate your own.
+
 
 
 ## Authors
