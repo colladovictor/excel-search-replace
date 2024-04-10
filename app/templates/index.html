@@ -6,13 +6,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Search and Replace in Excel Files</h1>
-    <form id="search-form" action="#" method="post">
-        <input type="text" id="search-text" name="search_text" required placeholder="Search for...">
-        <input type="text" id="replace-text" name="replace_text" required placeholder="Replace with...">
-        <input type="submit" value="Search">
-    </form>
-    <div id="results"></div>
+    <div class="container">
+        <h1>Search and Replace in Excel Files</h1>
+        <input type="text" id="directory-path" placeholder="Directory Path...">
+        <input type="text" id="search-text" placeholder="Search for...">
+        <input type="text" id="replace-text" placeholder="Replace with...">
+        <div class="buttons">
+            <button id="search-button">Search</button>
+            <button id="replace-button">Search and Replace</button>
+        </div>
+        <div id="results"></div>
+    </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

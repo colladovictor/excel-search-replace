@@ -1,61 +1,50 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const searchForm = document.getElementById('search-form');
+    const directoryPath = document.getElementById('directory-path');
     const searchText = document.getElementById('search-text');
-    const replaceText = document.getElementById('replace-text'); 
+    const replaceText = document.getElementById('replace-text');
     const resultsDiv = document.getElementById('results');
+    const searchButton = document.getElementById('search-button');
+    const replaceButton = document.getElementById('replace-button');
 
-    searchForm.addEventListener('submit', function(event) {
-        event.preventDefault(); 
+    const performAction = (isReplace) => {
+        resultsDiv.innerHTML = ''; // Clear previous results
+        const actionPath = isReplace ? '/replace' : '/search';
+        const payload = {
+            directoryPath: directoryPath.value,
+            searchText: searchText.value,
+            replaceText: isReplace ? replaceText.value : undefined
+        };
 
-        fetch('/search', {
+        fetch(actionPath, {
             method: 'POST',
-            body: JSON.stringify({ searchText: searchText.value }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: JSON.stringify(payload),
+            headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(data => {
-            displayResults(data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
-
-    function displayResults(results) {
-        resultsDiv.innerHTML = '';
-
-        if (results.length === 0) {
-            resultsDiv.innerHTML = 'No results found.';
-            return;
-        }
-
-        results.forEach((result, index) => {
-            const resultElement = document.createElement('div');
-            resultElement.innerHTML = `<strong>${result.file}</strong>: contains searchable text <button onclick="replaceTextInFile('${result.file}', ${index})">Replace Text</button>`;
-            resultsDiv.appendChild(resultElement);
-        });
-    }
-
-    window.replaceTextInFile = function(file, index) {
-        fetch('/replace', {
-            method: 'POST',
-            body: JSON.stringify({ file: file, searchText: searchText.value, replaceText: replaceText.value }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(`Text replaced in ${file}`);
+            if (data.length === 0) {
+                resultsDiv.innerHTML = '<p>No data found.</p>';
             } else {
-                alert(`Failed to replace text in ${file}`);
+                displayResults(data);
             }
         })
         .catch((error) => {
             console.error('Error:', error);
+            resultsDiv.innerHTML = '<p>Error performing the action.</p>';
         });
     };
+
+    searchButton.addEventListener('click', () => performAction(false));
+    replaceButton.addEventListener('click', () => performAction(true));
+
+    function displayResults(results) {
+        results.forEach(result => {
+            const resultEl = document.createElement('div');
+            resultEl.innerHTML = `
+                <p>File: <strong>${result.file}</strong></p>
+                <p>Sheet: <strong>${result.sheet}</strong>, Row: <strong>${result.row}</strong>, Content: <strong>${result.content}</strong></p>
+            `;
+            resultsDiv.appendChild(resultEl);
+        });
+    }
 });
