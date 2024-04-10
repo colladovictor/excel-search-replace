@@ -49,7 +49,7 @@ if errors with python 3.10, do: pip install --upgrade Flask Werkzeug
 
 ## Authors
 
-* **colladovictor** - *Initial work* - [YourUsername](https://github.com/colladovictor)
+* **colladovictor** - *Initial work* - [colladovictor](https://github.com/colladovictor)
 
 ## License
 
