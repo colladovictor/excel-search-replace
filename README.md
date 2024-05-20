@@ -46,7 +46,7 @@ Before you begin, ensure you have Python installed on your system. This applicat
 
 if errors with python 3.10, do: pip install --upgrade Flask Werkzeug
 
-## How to generate your own .exe of the app, with the following steps as tested with python 3.10:
+## How to generate your own .exe of the app, with the following steps as tested with python 3.10.7:
   ```
   pip install pyinstaller
 
